@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -21,6 +25,54 @@
         <div class="description">Save your favorite recipes</div>
       </nav>
       <button class="add-recipe-button">Add Recipe</button>
+      <div id="myModal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <label for="name" class="input-label name">Recipe Name: </label>
+          <input
+            type="text"
+            class="modal recipe-name inputbox"
+            name="recipe-name"
+          /><br />
+          <label for="time" class="input-label time">Cook Time: </label>
+          <input
+            type="text"
+            class="modal recipe-time inputbox"
+            name="recipe-time"
+          /><br />
+          <label for="difficulty" class="input-label difficulty"
+            >Difficulty:
+          </label>
+          <input
+            type="text"
+            class="modal recipe-difficulty inputbox"
+            name="recipe-difficulty"
+          /><br />
+          <label for="ingredients" class="input-label ingredients"
+            >Ingredients:
+          </label>
+          <input
+            type="text"
+            class="modal recipe-ingredients inputbox"
+            name="recipe-ingredients"
+          /><br />
+          <label for="instructionsLink" class="input-label instructionsLink"
+            >Link to Instructions:
+          </label>
+          <input
+            type="text"
+            class="modal recipe-instructionsLink inputbox"
+            name="recipe-instructionsLink"
+          /><br />
+          <label for="haveCooked" class="input-label recipe-haveCooked-label"
+            >Have you cooked this recipe before?<input
+              type="checkbox"
+              class="modal recipe-haveCooked inputbox"
+              name="recipe-haveCooked"
+          /></label>
+          <button class="save-recipe-button">Save Recipe</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
