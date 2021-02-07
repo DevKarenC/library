@@ -1,66 +1,4 @@
-const myRecipes = [
-  {
-    name: "Tomato Soup",
-    time: "20 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock, Sugar, Salt, Pepper",
-    instructionsLink: "https://www.simplyrecipes.com/recipes/tomato_soup/",
-    haveCooked: true,
-  },
-  {
-    name: "Chicken Mac and Cheese",
-    time: "45 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Macaroni, Onion, Garlic, Butter, Flour, Milk, Cheddar cheese, Cooked chicken, Salt, Pepper",
-    instructionsLink:
-      "https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/",
-    haveCooked: false,
-  },
-  {
-    name: "Greek Salad",
-    time: "15 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes, Cucumber, Onion, Bell pepper, Olives, Feta Cheese",
-    instructionsLink: "https://www.simplyrecipes.com/recipes/dads_greek_salad/",
-    haveCooked: false,
-  },
-];
-
-function displayDefaultRecipes() {
-  const recipesContainer = document.querySelector(".recipes-container");
-  myRecipes.forEach((defaultRecipe) => {
-    const recipeCard = document.createElement("div");
-    recipeCard.classList.add("recipe-card");
-    const recipeName = document.createElement("div");
-    // const recipePic = document.createElement("div");
-    const recipeTime = document.createElement("div");
-    const recipeDifficulty = document.createElement("div");
-    const recipeIngredients = document.createElement("div");
-    const recipeInstructions = document.createElement("div");
-    const recipeCooked = document.createElement("div");
-    recipeName.textContent = defaultRecipe.name;
-    recipeTime.textContent = defaultRecipe.time;
-    recipeDifficulty.textContent = defaultRecipe.difficulty;
-    recipeIngredients.textContent = defaultRecipe.ingredients;
-    recipeInstructions.textContent = defaultRecipe.instructionsLink;
-    recipeCooked.textContent = defaultRecipe.haveCooked;
-    recipeCard.append(
-      recipeName,
-      // recipePic,
-      recipeTime,
-      recipeDifficulty,
-      recipeIngredients,
-      recipeInstructions,
-      recipeCooked
-    );
-    recipesContainer.append(recipeCard);
-  });
-}
-
-// displayDefaultRecipes();
+const myRecipes = [];
 
 // Recipe Constructor Function
 function Recipe(
@@ -100,7 +38,7 @@ function saveRecipe() {
   const ingredients = document.querySelector(".recipe-ingredients").value;
   const instructionsLink = document.querySelector(".recipe-instructionsLink")
     .value;
-  const haveCooked = document.querySelector(".recipe-haveCooked").value;
+  const haveCooked = document.querySelector(".recipe-haveCooked").checked;
   const newRecipe = new Recipe(
     name,
     time,
@@ -110,8 +48,7 @@ function saveRecipe() {
     haveCooked
   );
   myRecipes.push(newRecipe);
-  displayRecipes();
-  console.log(myRecipes);
+  displayRecipes(newRecipe);
 }
 
 function addRecipes() {
@@ -123,36 +60,39 @@ function addRecipes() {
 
 addRecipes();
 
-function displayRecipes() {
+function displayRecipes(recipe) {
   const recipesContainer = document.querySelector(".recipes-container");
-  myRecipes.forEach((recipe) => {
-    // if (!myRecipes.includes(recipe)) {
-    // console.log(recipe);
-    const recipeCard = document.createElement("div");
-    recipeCard.classList.add("recipe-card");
-    const recipeName = document.createElement("div");
-    // const recipePic = document.createElement("div");
-    const recipeTime = document.createElement("div");
-    const recipeDifficulty = document.createElement("div");
-    const recipeIngredients = document.createElement("div");
-    const recipeInstructions = document.createElement("div");
-    const recipeCooked = document.createElement("div");
-    recipeName.textContent = recipe.name;
-    recipeTime.textContent = recipe.time;
-    recipeDifficulty.textContent = recipe.difficulty;
-    recipeIngredients.textContent = recipe.ingredients;
-    recipeInstructions.textContent = recipe.instructionsLink;
-    recipeCooked.textContent = recipe.haveCooked;
-    recipeCard.append(
-      recipeName,
-      // recipePic,
-      recipeTime,
-      recipeDifficulty,
-      recipeIngredients,
-      recipeInstructions,
-      recipeCooked
-    );
-    recipesContainer.append(recipeCard);
-    // }
-  });
+  const recipeCard = document.createElement("div");
+  recipeCard.classList.add("recipe-card");
+  const recipeName = document.createElement("div");
+  recipeName.classList.add("recipe-card-name");
+  recipeName.textContent = recipe.name;
+  const recipeTime = document.createElement("div");
+  recipeTime.textContent = recipe.time;
+  const recipeDifficulty = document.createElement("div");
+  recipeDifficulty.textContent = recipe.difficulty;
+  const recipeIngredients = document.createElement("div");
+  recipeIngredients.classList.add("recipe-card-ingredients");
+  recipeIngredients.textContent = recipe.ingredients;
+  const recipeInstructions = document.createElement("div");
+  const link = document.createElement("a");
+  link.href = recipe.instructionsLink;
+  link.target = "_blank";
+  link.textContent = "Recipe Site";
+  recipeInstructions.append(link);
+  const cookedButton = document.createElement("button");
+  if (recipe.haveCooked) {
+    cookedButton.textContent = "Cooked";
+  } else {
+    cookedButton.textContent = "Not Cooked";
+  }
+  recipeCard.append(
+    recipeName,
+    recipeTime,
+    recipeDifficulty,
+    recipeIngredients,
+    recipeInstructions,
+    cookedButton
+  );
+  recipesContainer.append(recipeCard);
 }
