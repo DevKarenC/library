@@ -108,23 +108,31 @@ function displayRecipes(recipe) {
   link.href = recipe.instructionsLink;
   link.target = "_blank";
   link.textContent = "Recipe Site";
-  recipeInstructions.append(link);
+  recipeInstructions.appendChild(link);
   const cookedButton = document.createElement("button");
   if (recipe.haveCooked) {
     cookedButton.textContent = "Cooked";
   } else {
     cookedButton.textContent = "Not Cooked";
   }
+  cookedButton.classList.add("cooked-toggle");
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button");
+  const garbageBinIcon = document.createElement("i");
+  garbageBinIcon.classList.add("far", "fa-trash-alt");
+  deleteButton.appendChild(garbageBinIcon);
   recipeCard.append(
     recipeName,
     recipeTime,
     recipeDifficulty,
     recipeIngredients,
     recipeInstructions,
-    cookedButton
+    cookedButton,
+    deleteButton
   );
   recipesContainer.append(recipeCard);
   assignIndex();
+  deleteRecipes();
 }
 
 // giving each recipe a data-attribute that corresponds to the index of the library array
