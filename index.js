@@ -1,4 +1,33 @@
-const myRecipes = [];
+const myRecipes = [
+  {
+    name: "Tomato Soup",
+    time: "20 minutes",
+    difficulty: "Easy",
+    ingredients:
+      "Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock, Sugar, Salt, Pepper",
+    instructionsLink: "https://www.simplyrecipes.com/recipes/tomato_soup/",
+    haveCooked: true,
+  },
+  {
+    name: "Chicken Mac and Cheese",
+    time: "45 minutes",
+    difficulty: "Easy",
+    ingredients:
+      "Macaroni, Onion, Garlic, Butter, Flour, Milk, Cheddar cheese, Cooked chicken, Salt, Pepper",
+    instructionsLink:
+      "https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/",
+    haveCooked: false,
+  },
+  {
+    name: "Greek Salad",
+    time: "15 minutes",
+    difficulty: "Easy",
+    ingredients:
+      "Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes, Cucumber, Onion, Bell pepper, Olives, Feta Cheese",
+    instructionsLink: "https://www.simplyrecipes.com/recipes/dads_greek_salad/",
+    haveCooked: false,
+  },
+];
 
 // Recipe Constructor Function
 function Recipe(
@@ -16,6 +45,15 @@ function Recipe(
   this.instructionsLink = instructionsLink;
   this.haveCooked = haveCooked;
 }
+
+function addRecipes() {
+  const addRecipeButton = document.querySelector(".add-recipe-button");
+  addRecipeButton.addEventListener("click", openModal);
+  const saveRecipeButton = document.querySelector(".save-recipe-button");
+  saveRecipeButton.addEventListener("click", saveRecipe);
+}
+
+addRecipes();
 
 function openModal() {
   const modal = document.getElementById("myModal");
@@ -50,15 +88,6 @@ function saveRecipe() {
   myRecipes.push(newRecipe);
   displayRecipes(newRecipe);
 }
-
-function addRecipes() {
-  const addRecipeButton = document.querySelector(".add-recipe-button");
-  addRecipeButton.addEventListener("click", openModal);
-  const saveRecipeButton = document.querySelector(".save-recipe-button");
-  saveRecipeButton.addEventListener("click", saveRecipe);
-}
-
-addRecipes();
 
 function displayRecipes(recipe) {
   const recipesContainer = document.querySelector(".recipes-container");
@@ -95,4 +124,58 @@ function displayRecipes(recipe) {
     cookedButton
   );
   recipesContainer.append(recipeCard);
+  assignIndex();
 }
+
+// giving each recipe a data-attribute that corresponds to the index of the library array
+function assignIndex() {
+  let recipeElements = Array.from(document.querySelectorAll(".recipe-card"));
+  for (let i = 0; i < recipeElements.length; i++) {
+    const index = i;
+    const recipeElement = recipeElements[i];
+    recipeElement.setAttribute("data-index-num", `${index}`);
+  }
+}
+
+assignIndex();
+
+function deleteRecipes() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener("click", function () {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this recipe.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Your recipe has been deleted.", {
+            icon: "success",
+          });
+          // delete the selected recipe from myRecipes array using index
+          const recipeIndex = deleteButton.parentNode.dataset.indexNum;
+          myRecipes.splice(recipeIndex, 1);
+          console.log(myRecipes);
+          // remove the selected recipe from DOM
+          const recipeContainer = document.querySelector(".recipes-container");
+          let recipeElements = Array.from(
+            document.querySelectorAll(".recipe-card")
+          );
+          recipeElements.forEach((recipeElement) => {
+            if (recipeElement.dataset.indexNum === recipeIndex) {
+              recipeContainer.removeChild(recipeElement);
+            }
+          });
+          // reassign index for the remaining recipes
+          assignIndex();
+        } else {
+          swal("Your recipe is safe!");
+        }
+      });
+    });
+  });
+}
+
+deleteRecipes();
