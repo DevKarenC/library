@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
       rel="stylesheet"
     />
     <link
@@ -20,57 +20,118 @@
   <body>
     <script src="index.js" async defer></script>
     <div class="wrapper">
+      <!-- NAVBAR -->
       <nav>
         <div class="title">Recipe Library</div>
-        <div class="description">Save your favorite recipes</div>
       </nav>
       <button class="add-recipe-button">Add Recipe</button>
+      <!-- MODAL -->
       <div id="myModal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <label for="name" class="input-label name">Recipe Name: </label>
+          <label for="name" class="input-label name">Recipe Name </label>
           <input
             type="text"
             class="modal recipe-name inputbox"
             name="recipe-name"
+            placeholder="Chicken noodle soup, cobb salad..."
           /><br />
-          <label for="time" class="input-label time">Cook Time: </label>
+          <label for="time" class="input-label time">Cook Time </label>
           <input
             type="text"
             class="modal recipe-time inputbox"
             name="recipe-time"
+            placeholder="1 hour 15 minutes"
           /><br />
           <label for="difficulty" class="input-label difficulty"
-            >Difficulty:
+            >Difficulty
           </label>
           <input
             type="text"
             class="modal recipe-difficulty inputbox"
             name="recipe-difficulty"
+            placeholder="Easy, Medium, Hard"
           /><br />
           <label for="ingredients" class="input-label ingredients"
-            >Ingredients:
+            >Ingredients
           </label>
           <input
             type="text"
             class="modal recipe-ingredients inputbox"
             name="recipe-ingredients"
+            placeholder="Chicken stock, egg noodles, carrots..."
           /><br />
           <label for="instructionsLink" class="input-label instructionsLink"
-            >Link to Instructions:
+            >Link to Instructions
           </label>
           <input
             type="text"
             class="modal recipe-instructionsLink inputbox"
             name="recipe-instructionsLink"
+            placeholder="Add your go-to website for recipes"
           /><br />
           <label for="haveCooked" class="input-label recipe-haveCooked-label"
-            >Have you cooked this recipe before?<input
+            ><span class="cooked">Have you cooked this recipe before?</span
+            ><input
               type="checkbox"
               class="modal recipe-haveCooked inputbox"
               name="recipe-haveCooked"
           /></label>
           <button class="save-recipe-button">Save Recipe</button>
+        </div>
+      </div>
+      <!-- RECIPES CONTAINER -->
+      <div class="recipes-container">
+        <div class="recipe-card" data-index-num="0">
+          <div class="recipe-card-name">Tomato Soup</div>
+          <div>20 minutes</div>
+          <div>Difficulty: Easy</div>
+          <div class="recipe-card-ingredients">
+            Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock,
+            Sugar, Salt, Pepper
+          </div>
+          <div>
+            <a
+              href="https://www.simplyrecipes.com/recipes/tomato_soup/"
+              target="_blank"
+              >Simply Recipes
+            </a>
+          </div>
+          <button>Cooked</button>
+        </div>
+        <div class="recipe-card" data-index-num="1">
+          <div class="recipe-card-name">Chicken Mac and Cheese</div>
+          <div>45 minutes</div>
+          <div>Difficulty: Easy</div>
+          <div class="recipe-card-ingredients">
+            Macaroni, Onion, Garlic, Butter, Flour, Milk, Cheddar cheese, Cooked
+            chicken, Salt, Pepper
+          </div>
+          <div>
+            <a
+              href="https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/"
+              target="_blank"
+              >Simply Recipes
+            </a>
+          </div>
+          <button>Not Cooked</button>
+        </div>
+        <div class="recipe-card" data-index-num="2">
+          <div class="recipe-card-name">Greek Salad</div>
+          <div>15 minutes</div>
+          <div>Difficulty: Easy</div>
+          <div class="recipe-card-ingredients">
+            Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes,
+            Cucumber, Onion, Bell pepper, Olives, Feta Cheese
+          </div>
+          <div>
+            <a
+              href="https://www.simplyrecipes.com/recipes/dads_greek_salad/"
+              target="_blank"
+              >Simply Recipes
+            </a>
+          </div>
+          <button>Not Cooked</button>
         </div>
       </div>
     </div>
