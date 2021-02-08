@@ -96,6 +96,8 @@ function saveRecipe() {
   );
   myRecipes.push(newRecipe);
   displayRecipes(newRecipe);
+  const modal = document.getElementById("myModal");
+  modal.style.display = "none";
 }
 
 function displayRecipes(recipe) {
