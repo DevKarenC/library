@@ -14,6 +14,12 @@ This recipe library can:
 
 ## Demo: Adding a Recipe
 
+<img src="images/demo-add-recipe.gif" alt="Demo gif showing how to add a recipe" width="800px"/>
+
 ## Demo: Deleting a Recipe
 
+<img src="images/demo-delete-recipe.gif" alt="Demo gif showing how to delete a recipe" width="800px"/>
+
 ## Demo: Updating Cooked Status
+
+<img src="images/demo-update-status.gif" alt="Demo gif showing how to update cooked status for a recipe" width="800px"/>
