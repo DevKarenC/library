@@ -7,6 +7,9 @@ const myRecipes = [
       "Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock, Sugar, Salt, Pepper",
     instructionsLink: "https://www.simplyrecipes.com/recipes/tomato_soup/",
     haveCooked: true,
+    toggleCookedStatus() {
+      this.haveCooked = !this.haveCooked;
+    },
   },
   {
     name: "Chicken Mac and Cheese",
@@ -17,6 +20,9 @@ const myRecipes = [
     instructionsLink:
       "https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/",
     haveCooked: false,
+    toggleCookedStatus() {
+      this.haveCooked = !this.haveCooked;
+    },
   },
   {
     name: "Greek Salad",
@@ -26,6 +32,9 @@ const myRecipes = [
       "Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes, Cucumber, Onion, Bell pepper, Olives, Feta Cheese",
     instructionsLink: "https://www.simplyrecipes.com/recipes/dads_greek_salad/",
     haveCooked: false,
+    toggleCookedStatus() {
+      this.haveCooked = !this.haveCooked;
+    },
   },
 ];
 
@@ -107,11 +116,11 @@ function displayRecipes(recipe) {
   const link = document.createElement("a");
   link.href = recipe.instructionsLink;
   link.target = "_blank";
-  link.textContent = "Recipe Site";
+  link.textContent = "Link to Recipe";
   recipeInstructions.appendChild(link);
   const cookedButton = document.createElement("button");
   if (recipe.haveCooked) {
-    cookedButton.textContent = "Cooked";
+    cookedButton.textContent = "Cooked 🍳";
   } else {
     cookedButton.textContent = "Not Cooked";
   }
@@ -133,6 +142,7 @@ function displayRecipes(recipe) {
   recipesContainer.append(recipeCard);
   assignIndex();
   deleteRecipes();
+  toggleCookedStatusDisplay();
 }
 
 // giving each recipe a data-attribute that corresponds to the index of the library array
@@ -187,3 +197,34 @@ function deleteRecipes() {
 }
 
 deleteRecipes();
+
+// Method to toggle recipe cooked status on the Recipe prototype
+Recipe.prototype.toggleCookedStatus = function () {
+  this.haveCooked = !this.haveCooked;
+};
+
+function toggleCookedStatusDisplay() {
+  const cookedToggleButtons = Array.from(
+    document.querySelectorAll(".cooked-toggle")
+  );
+  cookedToggleButtons.forEach((toggleButton) => {
+    toggleButton.addEventListener("click", function () {
+      // need to know which index the toggleButton belongs to
+      const toggleButtonIndex = toggleButton.parentNode.dataset.indexNum;
+      // then I can access the object in the array with that index
+      const recipeObject = myRecipes[toggleButtonIndex];
+      console.log(recipeObject);
+      // and run the prototype method on that object in the array
+      recipeObject.toggleCookedStatus();
+      if (toggleButton.textContent === "Cooked 🍳") {
+        toggleButton.textContent = "Not Cooked";
+      } else {
+        toggleButton.textContent = "Cooked 🍳";
+      }
+      console.log(myRecipes);
+      console.log(recipeObject);
+    });
+  });
+}
+
+toggleCookedStatusDisplay();
