@@ -1,3 +1,18 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 2rem 0 0 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: #7289dc;
+}
+
 nav {
   text-align: center;
 }
@@ -8,11 +23,13 @@ nav {
   font-size: 4rem;
   letter-spacing: 6px;
   margin: 2rem 0;
+  color: white;
 }
 
 .add-recipe-button {
-  border: 3px #894bfc double;
-  background-color: white;
+  border: 3px #cceff9 solid;
+  border-radius: 5px;
+  background-color: #cceff9;
   padding: 1rem;
   cursor: pointer;
   display: block;
@@ -25,14 +42,15 @@ nav {
 
 .add-recipe-button:hover {
   border: 3px white double;
-  background-color: #894bfc;
-  color: white;
+  border-radius: 5px;
+  background-color: #9be9ff;
+  color: black;
   transition: all 0.5s ease-in-out;
 }
 
 .save-recipe-button {
-  border: 1px #1fa521 solid;
-  background-color: #1fa521;
+  border: 1px #3b88fd solid;
+  background-color: #3b88fd;
   color: white;
   padding: 1rem;
   cursor: pointer;
@@ -46,8 +64,8 @@ nav {
 }
 
 .save-recipe-button:hover {
-  border: 1px #08593a solid;
-  background-color: #08593a;
+  border: 1px #076aff solid;
+  background-color: #076aff;
   border-radius: 5px;
   color: white;
   transition: all 0.3s ease-in-out;
@@ -64,13 +82,13 @@ nav {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(167, 119, 255, 0.2);
+  background-color: rgba(242, 242, 242, 0.3);
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #ffffff;
-  margin: 300px auto 0 auto;
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
@@ -120,7 +138,6 @@ nav {
 
 /* The Close Button */
 .close {
-  color: #9557ee;
   float: right;
   font-size: 24px;
   font-weight: bold;
@@ -128,7 +145,7 @@ nav {
 
 .close:hover,
 .close:focus {
-  color: #6c1be5;
+  color: gray;
   text-decoration: none;
   cursor: pointer;
 }
@@ -138,15 +155,15 @@ nav {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: center;
-  margin: 5vw;
+  margin: 5vw 5vw 0 5vw;
 }
 
 .recipe-card {
-  background-color: #fff0f5;
+  background-color: #edfbff;
   display: grid;
   align-items: center;
   margin-bottom: 2rem;
-  border: 1px #fff0f5 solid;
+  border: 1px #edfbff solid;
   border-radius: 10px;
   padding: 1rem;
   width: 300px;
@@ -170,10 +187,9 @@ nav {
 }
 
 .cooked-toggle {
-  border: 1px solid white;
-  border: 1px solid white;
+  border: 1px solid #b9ecec;
   border-radius: 15px;
-  background-color: #ff3d3d;
+  background-color: #cceff9;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -182,22 +198,24 @@ nav {
   margin: 8px auto 12px;
   padding: 0.75rem;
   cursor: pointer;
-  color: white;
+  color: black;
   font-weight: bold;
+  transition: 0.3s ease-in-out;
 }
 
 .cooked-toggle:hover {
-  background-color: #c32c2c;
+  background-color: #9be9ff;
+  transition: 0.3s ease-in-out;
 }
 
 a {
   text-decoration: none;
-  color: #d63168;
+  color: #3b88fd;
 }
 
 a:visited {
   text-decoration: none;
-  color: #d63168;
+  color: #3b88fd;
 }
 
 a:hover {
