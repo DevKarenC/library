@@ -1,68 +1,61 @@
-const myRecipes = [
-  {
-    name: "Tomato Soup",
-    time: "20 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock, Sugar, Salt, Pepper",
-    instructionsLink: "https://www.simplyrecipes.com/recipes/tomato_soup/",
-    haveCooked: true,
-    toggleCookedStatus() {
-      this.haveCooked = !this.haveCooked;
-    },
-  },
-  {
-    name: "Chicken Mac and Cheese",
-    time: "45 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Macaroni, Onion, Garlic, Butter, Flour, Milk, Cheddar cheese, Cooked chicken, Salt, Pepper",
-    instructionsLink:
-      "https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/",
-    haveCooked: false,
-    toggleCookedStatus() {
-      this.haveCooked = !this.haveCooked;
-    },
-  },
-  {
-    name: "Greek Salad",
-    time: "15 minutes",
-    difficulty: "Easy",
-    ingredients:
-      "Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes, Cucumber, Onion, Bell pepper, Olives, Feta Cheese",
-    instructionsLink: "https://www.simplyrecipes.com/recipes/dads_greek_salad/",
-    haveCooked: false,
-    toggleCookedStatus() {
-      this.haveCooked = !this.haveCooked;
-    },
-  },
-];
-
-// Recipe Constructor Function
-function Recipe(
-  name,
-  time,
-  difficulty,
-  ingredients,
-  instructionsLink,
-  haveCooked
-) {
-  this.name = name;
-  this.time = time;
-  this.difficulty = difficulty;
-  this.ingredients = ingredients;
-  this.instructionsLink = instructionsLink;
-  this.haveCooked = haveCooked;
+class Recipe {
+  constructor(
+    name,
+    time,
+    difficulty,
+    ingredients,
+    instructionsLink,
+    haveCooked
+  ) {
+    this.name = name;
+    this.time = time;
+    this.difficulty = difficulty;
+    this.ingredients = ingredients;
+    this.instructionsLink = instructionsLink;
+    this.haveCooked = haveCooked;
+  }
+  toggleCookedStatus() {
+    this.haveCooked = !this.haveCooked;
+  }
 }
 
-function addRecipes() {
+const myRecipes = [];
+
+const tomatoSoup = new Recipe(
+  "Tomato Soup",
+  "20 minutes",
+  "Easy",
+  "Butter, Onion, Garlic, Flour, Tomato, Tomato sauce, Chicken stock, Sugar, Salt, Pepper",
+  "https://www.simplyrecipes.com/recipes/tomato_soup/",
+  true
+);
+
+const chickenMacAndCheese = new Recipe(
+  "Chicken Mac and Cheese",
+  "45 minutes",
+  "Easy",
+  "Macaroni, Onion, Garlic, Butter, Flour, Milk, Cheddar cheese, Cooked chicken, Salt, Pepper",
+  "https://www.simplyrecipes.com/recipes/easy_chicken_mac_and_cheese/",
+  false
+);
+
+const greekSalad = new Recipe(
+  "Greek Salad",
+  "15 minutes",
+  "Easy",
+  "Olive oil, Lemon juice, Garlic, Vinegar, Oregano, Pepper, Tomatoes, Cucumber, Onion, Bell pepper, Olives, Feta Cheese",
+  "https://www.simplyrecipes.com/recipes/dads_greek_salad/",
+  false
+);
+
+myRecipes.push(tomatoSoup, chickenMacAndCheese, greekSalad);
+
+(function () {
   const addRecipeButton = document.querySelector(".add-recipe-button");
   addRecipeButton.addEventListener("click", openModal);
   const saveRecipeButton = document.querySelector(".save-recipe-button");
   saveRecipeButton.addEventListener("click", saveRecipe);
-}
-
-addRecipes();
+})();
 
 function openModal() {
   const modal = document.getElementById("myModal");
@@ -177,7 +170,6 @@ function deleteRecipes() {
           // delete the selected recipe from myRecipes array using index
           const recipeIndex = deleteButton.parentNode.dataset.indexNum;
           myRecipes.splice(recipeIndex, 1);
-          console.log(myRecipes);
           // remove the selected recipe from DOM
           const recipeContainer = document.querySelector(".recipes-container");
           let recipeElements = Array.from(
@@ -200,11 +192,6 @@ function deleteRecipes() {
 
 deleteRecipes();
 
-// Method to toggle recipe cooked status on the Recipe prototype
-Recipe.prototype.toggleCookedStatus = function () {
-  this.haveCooked = !this.haveCooked;
-};
-
 function toggleCookedStatusDisplay() {
   const cookedToggleButtons = Array.from(
     document.querySelectorAll(".cooked-toggle")
@@ -215,7 +202,6 @@ function toggleCookedStatusDisplay() {
       const toggleButtonIndex = toggleButton.parentNode.dataset.indexNum;
       // then I can access the object in the array with that index
       const recipeObject = myRecipes[toggleButtonIndex];
-      console.log(recipeObject);
       // and run the prototype method on that object in the array
       recipeObject.toggleCookedStatus();
       if (toggleButton.textContent === "Cooked 🍳") {
@@ -223,8 +209,6 @@ function toggleCookedStatusDisplay() {
       } else {
         toggleButton.textContent = "Cooked 🍳";
       }
-      console.log(myRecipes);
-      console.log(recipeObject);
     });
   });
 }
